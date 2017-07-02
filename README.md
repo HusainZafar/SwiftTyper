@@ -4,7 +4,12 @@ SwiftTyper tests your typing speed in real time, displaying other stats like wor
 The program was created using PyQt and Qt designer.
 
 Instructions to run the program:
-Run type.py from the terminal
 
+```
+python type.py
+```
 Dependencies:
-PyQt4-	Debian: sudo apt-get install pyqt4-dev-tools
+- PyQt4
+ ```
+ sudo apt-get install pyqt4-dev-tools
+ ```
