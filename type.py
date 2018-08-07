@@ -1,9 +1,9 @@
 import time
 import sys
 from PyQt4 import QtCore, QtGui, uic
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from random import *
+from PyQt4.QtGui import QTextCursor, QMessageBox
+from PyQt4.QtCore import QTimer
+from random import randrange
 
 try:
 	_fromUtf8 = QtCore.QString.fromUtf8
@@ -17,7 +17,7 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 		QtGui.QMainWindow.__init__(self, parent)
 		self.Form = QtGui.QMainWindow()
 		self.Form.showFullScreen()
-                self.begin()
+		self.begin()
 	def begin(self):
 		self.Form.hide()
 		self.setupUi(self)
@@ -99,7 +99,7 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 	def done_typing_clicked(self,text):
 		new=text
 		new1=text[-1]	
-		if((len(new)-01)<self.count1):
+		if((len(new)-1)<self.count1):
 			self.count1-=1
 			self.count11-=1
 			self.compensate+=1
@@ -209,7 +209,6 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 			self.net_wpm=self.gross_wpm-(self.wrong_char1/5)
 			QMessageBox.about(self,'TIME"S UP!!!','Time\'s up. Press OK to see your final SCORE!!!')
 			QMessageBox.about(self,'SCORE','Accuracy	:	%d\n\nWPM	:	%d' %(self.acc,self.net_wpm))
-			print "message printed"
 
 app = QtGui.QApplication(sys.argv)
 myWindow = MyWindowClass()
