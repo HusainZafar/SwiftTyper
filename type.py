@@ -202,4 +202,4 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 
 app = QtGui.QApplication(sys.argv)
 myWindow = MyWindowClass()
-app.exec_()
+sys.exit(app.exec_())
