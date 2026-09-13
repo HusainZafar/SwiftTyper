@@ -179,8 +179,5 @@ font: 63 20pt &quot;Ubuntu&quot;;
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="ht1.qrc"/>
- </resources>
  <connections/>
 </ui>
