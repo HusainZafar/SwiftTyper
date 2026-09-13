@@ -1,9 +1,10 @@
 import time
 import json
 import sys
-from PyQt4 import QtCore, QtGui, uic
-from PyQt4.QtGui import QTextCursor, QMessageBox
-from PyQt4.QtCore import QTimer
+from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from PyQt5.QtGui import QTextCursor
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtCore import QTimer
 from random import randrange
 
 try:
@@ -13,10 +14,10 @@ except AttributeError:
 
 form_class = uic.loadUiType("type.ui")[0]
 
-class MyWindowClass(QtGui.QMainWindow, form_class):
+class MyWindowClass(QtWidgets.QMainWindow, form_class):
 	def __init__(self, parent=None):
-		QtGui.QMainWindow.__init__(self, parent)
-		self.Form = QtGui.QMainWindow()
+		QtWidgets.QMainWindow.__init__(self, parent)
+		self.Form = QtWidgets.QMainWindow()
 		self.Form.showFullScreen()
 		self.begin()
 	def begin(self):
@@ -32,7 +33,7 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 		format=self.cur.charFormat()
 		format.setForeground(QtCore.Qt.yellow)
 		self.cur.setCharFormat(format)
-		self.cur.insertText(self.para[randrange(12)])
+		self.cur.insertText(self.para[randrange(len(self.para))])
 		self.cell1=(self.output_para.toPlainText())
 		self.timer = QTimer(self)
 		self.start_time = 60
@@ -197,9 +198,9 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 		else:
 			self.timer.stop()
 			self.net_wpm=self.gross_wpm-(self.wrong_char1/5)
-			QMessageBox.about(self,'TIME"S UP!!!','Time\'s up. Press OK to see your final SCORE!!!')
+			QMessageBox.about(self,'TIME\'S UP!!!','Time\'s up. Press OK to see your final SCORE!!!')
 			QMessageBox.about(self,'SCORE','Accuracy	:	%d\n\nWPM	:	%d' %(self.acc,self.net_wpm))
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 myWindow = MyWindowClass()
 sys.exit(app.exec_())
