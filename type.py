@@ -41,6 +41,7 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		self.timer = QTimer(self)
 		self.start_time = 60
 		self.lcd_time.display("%02d:%02d" % (self.start_time/60,self.start_time % 60))
+		self.show_message('Swift Typer','Press OK when you are ready.')
 		self.restartTimer()
 		self.timer.timeout.connect(self.updateLCD)
 		self.count1=0
@@ -58,7 +59,6 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		self.correct_char1=0
 		self.wrong_char1=0		
 		self.all_char1=0
-		self.counter1=0
 		self.compensate1=0
 		self.count11=0
 		self.count21=0	
@@ -202,9 +202,6 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		box.exec_()
 
 	def updateLCD(self):
-		if self.counter1==0:
-			self.counter1+=1
-			self.show_message('Swift Typer','Press OK when you are ready.')
 		self.start_time -= 1
 		if self.start_time >= 0:
 			self.lcd_time.display("%d:%02d" % (self.start_time/60,self.start_time % 60))
