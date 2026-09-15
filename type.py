@@ -20,6 +20,12 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		self.begin()
 	def begin(self):
 		self.setupUi(self)
+		screen = QtWidgets.QApplication.desktop().availableGeometry(self)
+		margin = 60
+		width = min(self.width(), screen.width() - margin)
+		height = min(self.height(), screen.height() - margin)
+		self.resize(width, height)
+		self.move(screen.center() - self.rect().center())
 		self.show()
 		passages = open('passages.json').read()
 		self.para = json.loads(passages)['passages']
@@ -182,7 +188,13 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		box = QMessageBox(self)
 		box.setWindowTitle(title)
 		box.setText(text)
-		box.setWindowFlags(box.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint & ~QtCore.Qt.WindowMinimizeButtonHint & ~QtCore.Qt.WindowCloseButtonHint)
+		box.setWindowFlags(QtCore.Qt.Dialog | QtCore.Qt.FramelessWindowHint)
+		box.setStyleSheet("background-color: white; color: black;")
+		box.adjustSize()
+		screen = QtWidgets.QApplication.desktop().availableGeometry(self)
+		frame = box.frameGeometry()
+		frame.moveCenter(screen.center())
+		box.move(frame.topLeft())
 		box.exec_()
 
 	def updateLCD(self):
