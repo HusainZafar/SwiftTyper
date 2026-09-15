@@ -195,6 +195,10 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		frame = box.frameGeometry()
 		frame.moveCenter(screen.center())
 		box.move(frame.topLeft())
+		box.repaint()
+		box.show()
+		box.repaint()
+		QtWidgets.QApplication.processEvents()
 		box.exec_()
 
 	def updateLCD(self):
