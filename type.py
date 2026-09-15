@@ -182,10 +182,17 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		self.timer.start(1000)
 		
 
+	def show_message(self, title, text):
+		box = QMessageBox(self)
+		box.setWindowTitle(title)
+		box.setText(text)
+		box.setWindowFlags(box.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint & ~QtCore.Qt.WindowMinimizeButtonHint)
+		box.exec_()
+
 	def updateLCD(self):
 		if self.counter1==0:
 			self.counter1+=1
-			QMessageBox.about(self,'Swift Typer','Press OK when you are ready.')
+			self.show_message('Swift Typer','Press OK when you are ready.')
 		self.start_time -= 1
 		if self.start_time >= 0:
 			self.lcd_time.display("%d:%02d" % (self.start_time/60,self.start_time % 60))
@@ -198,8 +205,8 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		else:
 			self.timer.stop()
 			self.net_wpm=self.gross_wpm-(self.wrong_char1/5)
-			QMessageBox.about(self,'TIME\'S UP!!!','Time\'s up. Press OK to see your final SCORE!!!')
-			QMessageBox.about(self,'SCORE','Accuracy	:	%d\n\nWPM	:	%d' %(self.acc,self.net_wpm))
+			self.show_message('TIME\'S UP!!!','Time\'s up. Press OK to see your final SCORE!!!')
+			self.show_message('SCORE','Accuracy	:	%d\n\nWPM	:	%d' %(self.acc,self.net_wpm))
 
 app = QtWidgets.QApplication(sys.argv)
 myWindow = MyWindowClass()
