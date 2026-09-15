@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Swift Typer</string>
   </property>
   <property name="styleSheet">
    <string notr="true">
