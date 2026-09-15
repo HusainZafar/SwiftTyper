@@ -17,11 +17,8 @@ form_class = uic.loadUiType("type.ui")[0]
 class MyWindowClass(QtWidgets.QMainWindow, form_class):
 	def __init__(self, parent=None):
 		QtWidgets.QMainWindow.__init__(self, parent)
-		self.Form = QtWidgets.QMainWindow()
-		self.Form.showFullScreen()
 		self.begin()
 	def begin(self):
-		self.Form.hide()
 		self.setupUi(self)
 		self.showFullScreen()		
 		passages = open('passages.json').read()
@@ -186,7 +183,7 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		box = QMessageBox(self)
 		box.setWindowTitle(title)
 		box.setText(text)
-		box.setWindowFlags(box.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint & ~QtCore.Qt.WindowMinimizeButtonHint)
+		box.setWindowFlags(box.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint & ~QtCore.Qt.WindowMinimizeButtonHint & ~QtCore.Qt.WindowCloseButtonHint)
 		box.exec_()
 
 	def updateLCD(self):
