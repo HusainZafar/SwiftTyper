@@ -20,7 +20,7 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		self.begin()
 	def begin(self):
 		self.setupUi(self)
-		self.showFullScreen()		
+		self.show()
 		passages = open('passages.json').read()
 		self.para = json.loads(passages)['passages']
 		global new,new1
@@ -39,7 +39,6 @@ class MyWindowClass(QtWidgets.QMainWindow, form_class):
 		self.timer.timeout.connect(self.updateLCD)
 		self.count1=0
 		self.count2=0
-		self.setWindowState(QtCore.Qt.WindowMaximized)
 		self.input_para.textChanged[str].connect(self.done_typing_clicked)		
 		self.cur.movePosition(QTextCursor.Start)		
 		self.words=0
